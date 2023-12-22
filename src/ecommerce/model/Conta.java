@@ -15,6 +15,11 @@ public class Conta {
 		this.senha = senha;
 		this.endereco = endereco;
 	}
+	public Conta(String nome) {
+		super();
+		this.nome = nome;
+
+	}
 	
 	public String getNome() {
 		return nome;
