@@ -32,30 +32,7 @@ public class Menu {
 		System.out.println("Entre com a opção desejada:                          ");
 		System.out.println(Cores.TEXT_BLACK_BOLD + Cores.ANSI_WHITE_BACKGROUND);
 		
-		try {
-			opcao = leia.nextInt();
-		} catch (InputMismatchException e) {
-			System.out.println("\nDigite valores inteiros!");
-			leia.nextLine();
-			opcao = 0;
-		}
-
-		if (opcao == 00) {
-
-			System.out.println();
-			System.out.println("*********************************************************");
-			System.out.println("              GEN.COM AGRADECE SUA VISITA                ");
-			leia.close();
-			System.exit(0);
-		}
-		switch (opcao) {
-		case 1:
-		case 2:
-		case 3:
-		case 4:
-		case 5:
-		case 0:
-		}
+	
 	
 	
 	
