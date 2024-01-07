@@ -20,9 +20,8 @@ public class Menu {
 		EcommerceController controller = new EcommerceController();
 
 		Scanner scanner = new Scanner(System.in);
-		int opcao;
-		String nomeDaConta;
-		Conta conta;
+		int opcao, opcaoCarrinho;
+		String nome, email, senha, endereco;
 
 		while (true) {
 			System.out.println(Cores.TEXT_BLACK_BOLD + Cores.ANSI_WHITE_BACKGROUND);
@@ -60,35 +59,49 @@ public class Menu {
 			}
 			switch (opcao) {
 			case 1: 
-				System.out.println("Insira o nome da conta: ");
-				nomeDaConta = leia.nextLine();
+				System.out.println("Insira o nome da conta: \n");
+				// o nextLine é utilizado aqui para limpar o cache do nextInt da linha 45
 				leia.nextLine();
-				conta = controller.criarConta(nomeDaConta);
-				System.out.println(conta.getNome());
+				nome = leia.nextLine();
+				System.out.println("Insira o email: \n");
+				email = leia.nextLine();
+				System.out.println("Insira a senha: \n");
+				senha = leia.nextLine();
+				System.out.println("Insira o endereço: \n");
+				endereco = leia.nextLine();
+				controller.criarConta(new Conta(nome, email, senha, endereco));
 				keyPress();
 				break;
 			case 2:
-				List<Produto> listaProdutos = controller.inicializarProdutos();
-				controller.exibirProdutos(listaProdutos);
+				controller.exibirProdutos();
 				keyPress();
 				break;
 			case 3:
-				List<Produto> produtosCarrinho0 = controller.inicializarProdutos();
-				Carrinho carrinho0 = new Carrinho(produtosCarrinho0);
-				carrinho0.setListaProduto(produtosCarrinho0);
+				do {
+					System.out.println(Cores.TEXT_BLACK_BOLD + Cores.ANSI_WHITE_BACKGROUND);
+					controller.exibirProdutos();
+					System.out.println("Selecione qual produto deseja adicionar ao carrinho: ");
+					opcaoCarrinho = leia.nextInt();
+					System.out.println(Cores.TEXT_BLACK_BOLD + Cores.ANSI_WHITE_BACKGROUND);
+					System.out.println(Cores.TEXT_RED_BOLD + Cores.ANSI_WHITE_BACKGROUND);
+					System.out.println("Digite 0 para sair.");
+					System.out.println(Cores.TEXT_RED_BOLD + Cores.ANSI_WHITE_BACKGROUND);
+					if(opcaoCarrinho > 4) {
+						System.out.println(Cores.TEXT_RED_BOLD + Cores.ANSI_WHITE_BACKGROUND);
+						System.out.println("Produto número "+ opcaoCarrinho + " não é um produto válido!");
+						System.out.println(Cores.TEXT_RED_BOLD + Cores.ANSI_WHITE_BACKGROUND);
+					}
+					controller.adicionarProdutosAoCarrinho(opcaoCarrinho);
+				} while (opcaoCarrinho != 0);
 				keyPress();
 				break;
 			
 			case 4:
-				List<Produto> produtosCarrinho = controller.inicializarProdutos();
-				Carrinho carrinho = new Carrinho(produtosCarrinho);
-				carrinho.exibirProdutos();
+				controller.exibirCarrinho();
 				keyPress();
 				break;
 			case 5:
-				List<Produto> produtosCarrinho2 = controller.inicializarProdutos();
-				Carrinho carrinho2 = new Carrinho(produtosCarrinho2);
-				carrinho2.finalizarCompra();
+				controller.finalizarCompra();
 				keyPress();
 				break;
 				

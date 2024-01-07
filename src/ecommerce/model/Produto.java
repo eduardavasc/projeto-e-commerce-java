@@ -29,7 +29,7 @@ public class Produto {
 	}
 
 	public void exibirInfo() {
-		System.out.println(this.nome + "" + this.preco);
+		System.out.println(this.nome + " " + this.preco);
 		
 	}
 

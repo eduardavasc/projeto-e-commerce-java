@@ -31,10 +31,11 @@ public class Carrinho {
 	}
 
 	public void exibirProdutos() {
+		System.out.println("----- CARRINHO -----");
 		for (Produto produto : this.listaProduto) {
-			System.out.println(produto.getNome());
-
+			System.out.println(produto.getNome() + " - Valor: " + produto.getPreco());
 		}
+		System.out.println("Valor total do carrinho: " + this.exibirValor());
 	}
 
 	public void finalizarCompra() {
